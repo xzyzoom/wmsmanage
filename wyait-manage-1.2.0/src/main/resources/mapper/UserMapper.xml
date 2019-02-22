@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.wyait.manage.pojo.User">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="rolename" jdbcType="VARCHAR" property="rolename" />
 		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
 		<result column="password" jdbcType="VARCHAR" property="password" />
@@ -17,7 +18,7 @@
 		<result column="version" jdbcType="INTEGER" property="version" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, username, mobile, email, password, insert_uid,
+		id, username,rolename,mobile, email, password, insert_uid,
 		insert_time,
 		update_time, is_del,
 		is_job, mcode, send_time, version
@@ -206,7 +207,7 @@
 	<!--=Start getUsers 分页查询用户列表userSearch -->
 	<select id="getUsers" resultType="com.wyait.manage.entity.UserRoleDTO">
 		select
-		id, username, mobile, email, insert_uid, insert_time,
+		id, username,rolename,mobile, email, insert_uid, insert_time,
 		update_time,
 		is_del,is_job,version
 		from user
@@ -226,7 +227,7 @@
 				AND insert_time &lt;= #{userSearch.insertTimeEnd}
 			</if>
 		</where>
-		ORDER BY insert_time DESC
+		ORDER BY id ASC
 	</select>
 	<!--=End getUsers 分页查询用户列表 -->
 
@@ -260,6 +261,7 @@
 	<resultMap id="getUserRoles" type="com.wyait.manage.entity.UserRolesVO">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="rolename" jdbcType="VARCHAR" property="rolename" />
 		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
 		<result column="insert_uid" jdbcType="INTEGER" property="insertUid" />
@@ -277,7 +279,7 @@
 	</resultMap>
 	<select id="getUserAndRoles" resultMap="getUserRoles">
 		select
-		u.id, u.username,
+		u.id, u.username,u.rolename,
 		u.mobile, u.email, u.insert_uid insertUid,u.insert_time
 		insertTime,
 		u.update_time updateTime, u.is_del isDel,u.is_job isJob,u.version,
@@ -292,7 +294,7 @@
 	<!--=Start findUser 根据用户名和密码查找用户 -->
 	<select id="findUser" resultType="com.wyait.manage.pojo.User">
 		select
-		id, username, mobile,
+		id, username,rolename,mobile,
 		email, insert_uid insertUid, insert_time
 		insertTime, update_time
 		updateTime, is_del isDel,is_job
@@ -306,7 +308,7 @@
 	<!--=Start findUserByMobile 根据手机号获取用户数据 -->
 	<select id="findUserByMobile" resultType="com.wyait.manage.pojo.User">
 		select
-		id, username,
+		id, username,rolename,
 		mobile,password, email, insert_uid insertUid, insert_time
 		insertTime,
 		update_time, is_del,is_job,mcode,send_time sendTime,version
@@ -318,7 +320,7 @@
 	<!--=Start findUserByName 根据用户名获取用户数据 -->
 	<select id="findUserByName" resultType="com.wyait.manage.pojo.User">
 		select
-		id, username,
+		id, username,rolename,
 		mobile, email, insert_uid insertUid, insert_time
 		insertTime,
 		update_time updateTime, is_del isDel,is_job

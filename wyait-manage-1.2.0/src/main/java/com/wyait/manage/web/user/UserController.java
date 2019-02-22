@@ -547,7 +547,7 @@ public class UserController {
 	 * @param picCode
 	 * @return
 	 */
-	@RequestMapping(value = "sendMessage", method = RequestMethod.POST)
+	/*@RequestMapping(value = "sendMessage", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult sendMessage(@RequestParam("mobile") String mobile,
 			@RequestParam("picCode") String picCode) {
@@ -593,7 +593,7 @@ public class UserController {
 		}
 		logger.debug("发送短信验证码，结果=responseResult:" + responseResult);
 		return responseResult;
-	}
+	}*/
 
 	/**
 	 * 修改密码之确认手机号

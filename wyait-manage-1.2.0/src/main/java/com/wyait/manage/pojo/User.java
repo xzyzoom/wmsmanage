@@ -4,145 +4,150 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-	private static final long serialVersionUID = -3096736268081409238L;
-	private Integer id;
+    private static final long serialVersionUID = -3096736268081409238L;
+    private Integer id;
 
-	private String username;
+    private String username;
 
-	private String mobile;
+    public String getRolename() {
+        return rolename;
+    }
 
-	private String email;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 
-	private String password;
+    private String rolename;
 
-	private Integer insertUid;
+    private String mobile;
 
-	private Date insertTime;
+    private String email;
 
-	private Date updateTime;
+    private String password;
 
-	private Boolean isDel;
+    private Integer insertUid;
 
-	private Boolean isJob;
+    private Date insertTime;
 
-	private String mcode;
+    private Date updateTime;
 
-	private Date sendTime;
+    private Boolean isDel;
 
-	private Integer version;
+    private Boolean isJob;
 
-	public Integer getId() {
-		return id;
-	}
+    private String mcode;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private Date sendTime;
 
-	public String getUsername() {
-		return username;
-	}
+    private Integer version;
 
-	public void setUsername(String username) {
-		this.username = username == null ? null : username.trim();
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile == null ? null : mobile.trim();
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
 
-	public void setEmail(String email) {
-		this.email = email == null ? null : email.trim();
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setMobile(String mobile) {
+        this.mobile = mobile == null ? null : mobile.trim();
+    }
 
-	public void setPassword(String password) {
-		this.password = password == null ? null : password.trim();
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Integer getInsertUid() {
-		return insertUid;
-	}
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
 
-	public void setInsertUid(Integer insertUid) {
-		this.insertUid = insertUid;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public Date getInsertTime() {
-		return insertTime;
-	}
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
 
-	public void setInsertTime(Date insertTime) {
-		this.insertTime = insertTime;
-	}
+    public Integer getInsertUid() {
+        return insertUid;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setInsertUid(Integer insertUid) {
+        this.insertUid = insertUid;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getInsertTime() {
+        return insertTime;
+    }
 
-	public Boolean getIsDel() {
-		return isDel;
-	}
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
+    }
 
-	public void setIsDel(Boolean isDel) {
-		this.isDel = isDel;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Boolean getIsJob() {
-		return isJob;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setIsJob(Boolean isJob) {
-		this.isJob = isJob;
-	}
+    public Boolean getIsDel() {
+        return isDel;
+    }
 
-	public String getMcode() {
-		return mcode;
-	}
+    public void setIsDel(Boolean isDel) {
+        this.isDel = isDel;
+    }
 
-	public void setMcode(String mcode) {
-		this.mcode = mcode;
-	}
+    public Boolean getIsJob() {
+        return isJob;
+    }
 
-	public Date getSendTime() {
-		return sendTime;
-	}
+    public void setIsJob(Boolean isJob) {
+        this.isJob = isJob;
+    }
 
-	public void setSendTime(Date sendTime) {
-		this.sendTime = sendTime;
-	}
+    public String getMcode() {
+        return mcode;
+    }
 
-	public Integer getVersion() {
-		return version;
-	}
+    public void setMcode(String mcode) {
+        this.mcode = mcode;
+    }
 
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
+    public Date getSendTime() {
+        return sendTime;
+    }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", mobile="
-				+ mobile + ", email=" + email + ", password=" + password
-				+ ", insertUid=" + insertUid + ", insertTime=" + insertTime
-				+ ", updateTime=" + updateTime + ", isDel=" + isDel
-				+ ", isJob=" + isJob + ", mcode=" + mcode + ", sendTime="
-				+ sendTime + ", version=" + version + "]";
-	}
+    public void setSendTime(Date sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", username=" + username + ", mobile=" + mobile + ", email=" + email + ", password=" + password + ", insertUid=" + insertUid + ", insertTime=" + insertTime + ", updateTime=" + updateTime + ", isDel=" + isDel + ", isJob=" + isJob + ", mcode=" + mcode + ", sendTime=" + sendTime + ", version=" + version + "]";
+    }
 
 }
