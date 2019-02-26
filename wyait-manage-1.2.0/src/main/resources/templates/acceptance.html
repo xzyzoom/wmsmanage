@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='wyait后台管理'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+    <!--主体区域-->
+    <!-- <div class="layui-body" th:include="channel/channelImport :: authorize"></div> -->
+    <!--<div th:include="channel/body :: body"></div>-->
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div style=" background:#D0D0D0; color:#FFF; width:auto; margin-top:50px; font-size: 25px; height: auto "
+                     align="center">
+                    <div>
+                        <h6>资产管理_验收单</h6>
+                    </div>
+                    <form action="/assets/doAcceptance" method="post">
+                        <div style="margin-top:20px;">
+                          <table >
+                            <tr>
+                                <td>
+                                    模具名称：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="nameOfMoldTooling"/>&nbsp;&nbsp;
+                                </td>
+                               <td> 模具编号：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="serialNum"/>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td>模具材料：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="dieMaterial"/>&nbsp;&nbsp;
+                                </td>
+                                <td>生产材料：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="mouldMaterial"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>适用设备：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="applicableEquipment"/>&nbsp;&nbsp;</td>
+                                <td>使用单位：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="buildingUser"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>使用寿命：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="serviceLife"/>
+                                </td>
+                                <td>保养期限：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="maintenancePeriod" placeholder="保养期限..."/>&nbsp;&nbsp;
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>联系姓名：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                name="contact" placeholder="负责人姓名..."/>
+                                </td>
+                                <td>联系电话：<input type="number" required="required" AUTOCOMPLETE="OFF" name="contactPhone"
+                                                placeholder="电话号码..."/>&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>制造厂商：<input type="text" required="required" AUTOCOMPLETE="OFF" name="manufacturers"/></td>
+                                <td>验收日期：<input type="date" required="required" AUTOCOMPLETE="OFF"
+                                                name="acceptanceDates"/>
+                                </td>
+                            </tr>
+                              <tr>
+
+                                  <td><input type="submit" value="确认验收" align="center" class="btn btn-primary"/></td>
+                              </tr>
+                          </table>
+                        </div>
+                       <!-- <div style="margin-top:20px;">
+                            <span></span>
+                        </div>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <script type="text/javascript" src="/js/error.js"></script>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

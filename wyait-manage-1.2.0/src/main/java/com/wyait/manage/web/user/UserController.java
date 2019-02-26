@@ -339,7 +339,7 @@ public class UserController {
 			return responseResult;
 		}
 		// 用户是否存在
-		User existUser = this.userService.findUserByMobile(user.getMobile());
+		User existUser = this.userService.findUserByName(user.getUsername());
 		if (existUser == null) {
 			responseResult.setMessage("该用户不存在，请您联系管理员");
 			logger.debug("用户登录，结果=responseResult:" + responseResult);
