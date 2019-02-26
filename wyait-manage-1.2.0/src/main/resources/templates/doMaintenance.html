@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='wyait后台管理'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+    <!--主体区域-->
+    <!-- <div class="layui-body" th:include="channel/channelImport :: authorize"></div> -->
+    <!--<div th:include="channel/body :: body"></div>-->
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div style=" background:#D0D0D0; color:#FFF; width:auto; margin-top:50px; font-size: 25px; height: auto "
+                     align="center">
+                    <div style="margin-top:20px;">
+                        <h6>资产管理_维护保养信息表</h6>
+                    </div>
+                    <form action="/assets/doMantain" method="post">
+                        <div>
+                            <table>
+                                <tr style="margin-top:20px;">
+                                    <th>模具名称</th>
+                                    <th>模具编号</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" th:value="${acceptance.nameOfMoldTooling}"
+                                               name="nameOfMoldTooling" readonly="readonly"/></td>
+                                    <td><input type="text" th:value="${acceptance.serialNum}"
+                                               name="serialNum" readonly="readonly"/>
+                                    </td>
+                                </tr>
+                                <tr style="margin-top:20px;">
+                                    <th>维修保养负责人</th>
+                                    <th>维修保养内容</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="maintainName" required="required"
+                                               AUTOCOMPLETE="OFF"/></td>
+                                    <td><input type="text" name="maintainContent" required="required" AUTOCOMPLETE="OFF"/>
+                                    </td>
+                                </tr>
+
+                                <tr style="margin-top:20px;">
+                                    <th>维修保养时间</th>
+                                    <th>维修保养费用</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="date" name="maintainDate" required="required"
+                                               AUTOCOMPLETE="OFF"/></td>
+                                    <td><input type="number" name="maintainCost" required="required" AUTOCOMPLETE="OFF"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="submit" th:value="提交信息"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <script type="text/javascript" src="/js/error.js"></script>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

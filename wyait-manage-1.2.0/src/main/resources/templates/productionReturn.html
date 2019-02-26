@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='wyait后台管理'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+    <!--主体区域-->
+    <!-- <div class="layui-body" th:include="channel/channelImport :: authorize"></div> -->
+    <!--<div th:include="channel/body :: body"></div>-->
+
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+
+
+                <div style=" background:#D0D0D0; color:#FFF; width:auto; margin-top:50px; font-size: 25px; height: auto "
+                     align="center">
+                    <div>
+                        <h6>生产管理_生产领料</h6>
+                    </div>
+                    <form action="/produce/doReceive" method="post">
+                        <div style="margin-top:20px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        单&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" required="required"
+                                                                          AUTOCOMPLETE="OFF"
+                                                                          name="oddNo"/>&nbsp;&nbsp;
+                                    </td>
+                                    <td>材料名称：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                    name="materialName"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>单&nbsp;&nbsp;&nbsp;&nbsp;位：<input type="text" required="required"
+                                                                          AUTOCOMPLETE="OFF"
+                                                                          name="unit"/>&nbsp;&nbsp;
+                                    </td>
+                                    <td>领料主管：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                    name="pickingCompetent"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>数&nbsp;&nbsp;&nbsp;&nbsp;量：<input type="number" required="required"
+                                                                          AUTOCOMPLETE="OFF"
+                                                                          name="quantity"/>&nbsp;&nbsp;
+                                    </td>
+                                    <td>领&nbsp;&nbsp;料&nbsp;&nbsp;人：<input type="text" required="required"
+                                                                           AUTOCOMPLETE="OFF"
+                                                                           name="pickingMan"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>日&nbsp;&nbsp;&nbsp;&nbsp;期：<input type="date" required="required"
+                                                                          AUTOCOMPLETE="OFF"
+                                                                          name="data"/>
+                                    </td>
+                                    <td>提&nbsp;&nbsp;货&nbsp;&nbsp;人：<input type="text" required="required"
+                                                                           AUTOCOMPLETE="OFF"
+                                                                           name="consignee"/>&nbsp;&nbsp;
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>备&nbsp;&nbsp;&nbsp;&nbsp;注：<select name="remark">
+                                        <option selected="selected">请选择</option>
+                                        <option th:value="0">领料</option>
+                                    </select>
+                                    </td>
+                                    <td>资&nbsp;&nbsp;材&nbsp;&nbsp;部：<input type="text" required="required" AUTOCOMPLETE="OFF"
+                                                   name="propertyDepartment"/></td>
+                                </tr>
+                                <tr>
+                                    <td>部门名称：<select name="depName">
+                                        <option selected="selected">请选择部门</option>
+                                        <option th:each="departmentList:${departmentList}"
+                                                th:value="${departmentList.depName}"
+                                                th:text="${departmentList.depName}"></option>
+                                    </select>
+                                    </td>
+                                    <td>产线名称：<select name="depLine">
+                                        <option selected="selected">请选择产线</option>
+                                        <option th:each="departmentList:${departmentList}"
+                                                th:value="${departmentList.depLine}"
+                                                th:text="${departmentList.depLine}"></option>
+                                    </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" value="确认领料"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- <div style="margin-top:20px;">
+                             <span></span>
+                         </div>-->
+                    </form>
+                </div>
+
+
+                <!-- <div style=" background:#D0D0D0; color:#FFF; width:auto; margin-top:50px; font-size: 25px; height: auto "
+                      align="center">
+                     <h2>生产管理_领料</h2>
+                 <form action="#" mthod="post">
+                     <table>
+                         <tr>
+                             <th>单号</th>
+                             <th>材料名称</th>
+                         </tr>
+                         <tr>
+                             <td><input type="text" name="oddNo"/></td>
+                             <td><inout type="text" name="materialName"/></td>
+                         </tr>
+                         <tr>
+                             <th>单位</th>
+                             <th>数量</th>
+                         </tr>
+                         <tr>
+                             <td><input type="text" name="unit"/></td>
+                             <td>
+                                 <inout type="text" name="quantity"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <th>工序</th>
+                             <th>备注</th>
+                         </tr>
+                         <tr>
+                             <td><input type="text" name="process"/></td>
+                             <td><select name="remark">
+                                 <option selected="selected">请选择</option>
+                                 <option th:value="领料">领料</option>
+                             </select>
+                             </td>
+                         </tr>
+                         <tr>
+                             <th>领料人</th>
+                             <th>提货人</th>
+                         </tr>
+                         <tr>
+                             <td><input type="text" name="pickingMan"/></td>
+                             <td><inout type="text" name="consignee"/></td>
+                         </tr>
+                         <tr>
+                             <th>领料人</th>
+                             <th>提货人</th>
+                         </tr>
+                         <tr>
+                             <td><input type="text" name="pickingMan"/></td>
+                             <td><inout type="text" name="consignee"/></td>
+                         </tr>
+                         <tr>
+                             <th>领料主管</th>
+                             <th>资材部</th>
+                         </tr>
+                         <tr>
+                             <td><input type="text" name="pickingCompetent"/></td>
+                             <td><inout type="text" name="propertyDepartment"/></td>
+                         </tr>
+                         <tr>
+                             <th>日期</th>
+                             <th>部门名称</th>
+                         </tr>
+                         <tr>
+                             <td><input type="date" name="data"/></td>
+                             <td><inout type="text" name="depName"/></td>
+                         </tr>
+                     </table>
+                 </form>
+                 </div>-->
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/error.js"></script>
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

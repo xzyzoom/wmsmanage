@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='wyait后台管理'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+    <!--主体区域-->
+    <!-- <div class="layui-body" th:include="channel/channelImport :: authorize"></div> -->
+    <!--<div th:include="channel/body :: body"></div>-->
+
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+
+                <div style="width:auto; margin-top:50px; font-size: 35px; height: auto "
+                     align="center">
+                    <div style="font-size: 18px" align="center">
+                        <div style=" background:#D0D0D0; color:#FFF; width:260px; margin-top:50px; font-size: 30px; height: auto "
+                             align="center"><span>原料管理_生产出库</span></div>
+                        <table th:border="1px" align="center">
+                            <tr align="center" style=" background:#D0D0D0; color:#FFF;">
+                                <th>单号</th>
+                                <th>单位</th>
+                                <th>数量</th>
+                                <th>日期</th>
+                                <th>备注</th>
+
+                                <th>材料名称</th>
+                                <th>部门名称</th>
+                                <th>产线名称</th>
+                                <th>领料人</th>
+                                <th>领料主管</th>
+
+                                <th>提货人</th>
+                                <th>资材部</th>
+                                <th>操作</th>
+                            </tr>
+                            <tr th:each="manList:${managementList}" align="center">
+                                <td th:text="${manList.oddNo}"></td>
+                                <td th:text="${manList.unit}"></td>
+                                <td th:text="${manList.quantity}"></td>
+                                <td th:text="${manList.data}"></td>
+                                <td th:if="${manList.remark}==0" th:text="领料"></td>
+
+                                <td th:text="${manList.materialName}"></td>
+                                <td th:text="${manList.depName}"></td>
+                                <td th:text="${manList.depLine}"></td>
+                                <td th:text="${manList.pickingMan}"></td>
+                                <td th:text="${manList.pickingCompetent}"></td>
+
+
+                                <td th:text="${manList.consignee}"></td>
+                                <td th:text="${manList.propertyDepartment}"></td>
+                                <td>
+                                    <a href="#">发&nbsp;&nbsp;料</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/error.js"></script>
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

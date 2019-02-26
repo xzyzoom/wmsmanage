@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wyait.manage.dao.AcceptanceMapper">
+    <!--  资产管理_验收-->
+    <insert id="addAssetsDao" parameterType="Acceptance">
+        INSERT INTO `acceptance`(nameOfMoldTooling,dieMaterial,mouldMaterial,applicableEquipment,buildingUser
+        ,serviceLife,maintenancePeriod,contact,contactPhone,manufacturers,acceptanceDates,serialNum)
+        VALUES(#{nameOfMoldTooling},#{dieMaterial},#{mouldMaterial},#{applicableEquipment},#{buildingUser}
+        ,#{serviceLife},#{maintenancePeriod},#{contact},#{contactPhone},#{manufacturers},#{acceptanceDates},#{serialNum});
+    </insert>
+    <!--资产管理_验收  添加名称  编号到moldNum表-->
+    <insert id="addMoldNum" parameterType="Moldnum">
+        INSERT INTO moldnum(serialNum,nameOfMoldTooling) VALUES(#{serialNum},#{nameOfMoldTooling});
+    </insert>
+    <!--资产管理_列表-->
+    <select id="getAssetsListDao" resultType="Acceptance">
+        SELECT * FROM acceptance;
+    </select>
+    <!--资产管理_盘点 查询模具名称-->
+    <select id="setAssetsName" resultType="Acceptance">
+        SELECT nameOfMoldTooling FROM acceptance GROUP BY nameOfMoldTooling;
+    </select>
+
+
+    <!--资产管理_借出（模糊查询moldsState=0-待使用 1-待保养2-待维修3报废）-->
+    <select id="getAcceptanceByStu" resultType="Acceptance">
+        SELECT * FROM acceptance WHERE moldsState=0;
+    </select>
+
+    <!--资产管理_借出_通过模具编号查询详细信息-->
+    <select id="getAcceptanceByCode" resultType="Acceptance">
+        SELECT * FROM acceptance WHERE serialNum=#{serialNum};
+    </select>
+    <!--查询部门信息-->
+    <select id="getDepartmentList" resultType="Department">
+        SELECT * FROM department ;
+    </select>
+    <!--资产管理_借出-->
+    <insert id="doLoanedOut" parameterType="Recording">
+        SET autocommit=0;
+        INSERT INTO `recording`(nameOfMoldTooling,serialNum,loaneName,depName,depLine,libraryTime)VALUES
+        (#{nameOfMoldTooling},#{serialNum},#{loaneName},#{depName},#{depLine},#{libraryTime});
+        UPDATE acceptance AS a SET a.remainingNum=a.remainingNum-1;
+        WHERE a.nameOfMoldTooling=#{nameOfMoldTooling};
+        COMMIT;
+        ROLLBACK;
+        SET autocommit=1;
+    </insert>
+    <!--资产管理_维修保养  返回moldsState=0-待使用1-待保养2-待维修3报废 -->
+    <select id="getAcceptionListByState" resultType="Acceptance">
+      SELECT * FROM acceptance WHERE moldsState IN (1,2);
+    </select>
+    <!--资产管理_维修保养 添加数据  recording-->
+    <insert id="doMaintenance" parameterType="Recording">
+        INSERT INTO recording(nameOfMoldTooling,serialNum,maintainName,maintainContent,maintainTime,maintainCost)
+        VALUES(#{nameOfMoldTooling},#{serialNum},#{maintainName},#{maintainContent},#{maintainTime},#{maintainCost})
+    </insert>
+<!--通过名称查询记录数-->
+    <select id="getCountByName" resultType="int">
+        SELECT COUNT(moldsNum) AS COUNT
+        FROM acceptance
+        GROUP BY nameOfMoldTooling
+        HAVING nameOfMoldTooling=#{nameOfMoldTooling}
+    </select>
+</mapper>

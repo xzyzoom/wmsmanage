@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='wyait后台管理'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+    <!--主体区域-->
+    <!-- <div class="layui-body" th:include="channel/channelImport :: authorize"></div> -->
+    <!--<div th:include="channel/body :: body"></div>-->
+
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+            <div style="font-size: 18px" align="center" >
+               <div style=" background:#D0D0D0; color:#FFF; width:auto; margin-top:50px; font-size: 25px; height: auto "
+                    align="center"><span>资产管理_维护/保养</span></div>
+                <table th:border="1px" align="center">
+                    <tr align="center" style=" background:#D0D0D0; color:#FFF;">
+                        <th>模具名称</th>
+                        <th>模具编号</th>
+                        <th>模具材料</th>
+                        <th>生产材料</th>
+                        <th>适用设备</th>
+
+                        <th>使用寿命</th>
+                        <th>保养期限</th>
+                        <th>联系姓名</th>
+                        <th>联系电话</th>
+                        <th>制造厂商</th>
+
+                        <th>模具数量</th>
+                        <th>借出数量</th>
+                        <th>入库时间</th>
+                        <th>模具状态</th>
+                        <th>适用单位</th>
+
+                        <th>维修次数</th>
+                        <th>维修费用</th>
+                        <th>维修/保养负责人</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr th:each="assets:${assetsList}" align="center">
+                        <td th:text="${assets.nameOfMoldTooling}"></td>
+                        <td th:text="${assets.serialNum}"></td>
+                        <td th:text="${assets.dieMaterial}"></td>
+                        <td th:text="${assets.mouldMaterial}"></td>
+                        <td th:text="${assets.applicableEquipment}"></td>
+
+                        <td th:text="${assets.serviceLife}"></td>
+                        <td th:text="${assets.maintenancePeriod}"></td>
+                        <td th:text="${assets.contact}"></td>
+                        <td th:text="${assets.contactPhone}"></td>
+                        <td th:text="${assets.manufacturers}"></td>
+
+                        <td th:text="${assets.moldsNum}"></td>
+                        <td th:text="${assets.borrowNum}"></td>
+                        <td th:text="${assets.acceptanceDates}"></td>
+                        <td th:if="${assets.moldsState}==0" th:text="待使用"></td>
+                        <td th:if="${assets.moldsState}==1" th:text="待保养"></td>
+                        <td th:if="${assets.moldsState}==2" th:text="待维修"></td>
+                        <td th:if="${assets.moldsState}==3" th:text="待报废"></td>
+                        <td th:text="${assets.buildingUser}"></td>
+
+                        <td th:text="${assets.repairsNum}"></td>
+                        <td th:text="${assets.cost}"></td>
+                        <td th:text="${assets.head}"></td>
+                        <td>
+                            <a th:href="@{/assets/doMaintenance(serialNum=${assets.serialNum})}">维护&nbsp;保养</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/error.js"></script>
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>
