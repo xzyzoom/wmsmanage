@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='wyait后台管理'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+    <!--主体区域-->
+    <!-- <div class="layui-body" th:include="channel/channelImport :: authorize"></div> -->
+    <!--<div th:include="channel/body :: body"></div>-->
+
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <h2 style="color: #3C6E31">客户信息</h2>
+                <div></div>
+                <div>
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>客户编号</th>
+                            <th>客户编码</th>
+                            <th>客户名称</th>
+                            <th>负责人</th>
+                            <th>号码</th>
+                            <th>地址</th>
+                            <th width="88px;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="customer:${customer}">
+                                <td th:text="${customer.id}"></td>
+                                <td th:text="${customer.custCode}"></td>
+                                <td th:text="${customer.custName}"></td>
+                                <td th:text="${customer.custPerson}"></td>
+                                <td th:text="${customer.custPhone}"></td>
+                                <td th:text="${customer.custAddress}"></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-xs">编辑</a>
+                                    <a class="layui-btn layui-btn-danger layui-btn-xs">删除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/error.js"></script>
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/auth/roleList.js"></script>
+</div>
+</body>
+</html>

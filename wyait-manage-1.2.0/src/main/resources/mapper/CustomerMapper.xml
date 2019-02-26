@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wyait.manage.dao.CustomerMapper">
+    <select id="getCustomerList" parameterType="com.wyait.manage.pojo.Customer" resultType="com.wyait.manage.pojo.Customer">
+        select * from customer
+        <where>
+            <if test="custCode !=null and custCode!=''">
+                and custCode like CONCAT(CONCAT('%',#{custCode}),'%')
+            </if>
+            <if test="custName !=null and custName!=''">
+                and custName like CONCAT(CONCAT('%',#{custName}),'%')
+            </if>
+            <if test="custPhone !=null and custPhone!=''">
+                and custPhone like CONCAT(CONCAT('%',#{custPhone}),'%')
+            </if>
+        </where>
+        order by id asc
+    </select>
+
+    <select id="getCustomerById" parameterType="Integer" resultType="com.wyait.manage.pojo.Customer">
+        select * from customer where id=#{id}
+    </select>
+
+    <insert id="addCustomer" parameterType="com.wyait.manage.pojo.Customer">
+        insert into customer (custCode,custName,custPerson,custPhone,custAddress)
+        values
+        (#{custCode},#{custName},#{custPerson},#{custPhone},#{custAddress})
+    </insert>
+
+    <delete id="deleteCustomerById" parameterType="Integer">
+        delete from customer where id=#{id}
+    </delete>
+</mapper>

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.testng.annotations.ITestOrConfiguration;
 
 import javax.sql.DataSource;
 
@@ -22,7 +23,7 @@ import javax.sql.DataSource;
  * @创建时间：2018-02-27 13:33
  * @version：V1.0
  */
-@Configuration
+/*@ITestOrConfiguration*/
 //指明了扫描dao层，并且给dao层注入指定的SqlSessionTemplate
 @MapperScan(basePackages = "com.wyait.manage.test1", sqlSessionTemplateRef  = "test1SqlSessionTemplate")
 public class TestDataSourceConfig {

@@ -96,6 +96,8 @@
           <element id="library" level="project" name="Maven: io.springfox:springfox-swagger-ui:2.6.1" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:1.5.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.5.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.testng:testng:7.0.0-beta3" />
+          <element id="library" level="project" name="Maven: com.beust:jcommander:1.72" />
         </element>
       </element>
       <element id="directory" name="META-INF">
